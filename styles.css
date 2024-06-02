@@ -1,0 +1,87 @@
+
+.container {
+    width: 50%;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.digit {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0 10px;
+}
+
+.txt {
+    font-size: 24px;
+    margin: 0 10px;
+}
+
+
+#laps {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+#laps li {
+    margin-bottom: 10px;
+}
+body{
+    text-align: center;
+    border-style: solid;
+    background-color: white;
+    border: 10px solid lightskyblue;
+    padding:10px;
+}
+#start{
+    background-color: rgb(78, 99, 221);
+    color: white;
+    padding: 5px;
+    width: 150px;
+    height: 50px;
+    cursor:pointer;
+
+}
+#stop{
+    background-color: rgb(224, 15, 15);
+    color: white;
+    padding: 5px;
+    width: 150px;
+    height: 50px;
+    cursor:pointer;
+
+}
+#lap{
+    background-color: rgb(25, 211, 65);
+    color: white;
+    padding: 5px;
+    width: 150px;
+    height: 50px;
+    cursor:pointer;
+
+}
+#reset{
+    background-color: rgb(202, 44, 194);
+    color: white;
+    padding: 5px;
+    width: 150px;
+    height: 50px;
+    cursor:pointer;
+}
+button:hover{
+    background-color: rgb(9, 70, 67);
+}
+.linkedin{
+    height: 25px;
+    width: 25px;
+    margin-left: 70%;
+    border: 2px solid black;
+    border-radius: 15px;
+    
+}
+.github{
+    height: 25px;
+    width: 25px;
+    border: 2px solid black;
+    border-radius: 15px;
+}
