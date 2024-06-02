@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" style="background-color: rgb(78, 99, 221); padding: 12%;">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Stopwatch </h1>
+        <div id="time">
+            <span class="digit" id="hr">00</span>
+            <span class="txt">Hr</span>
+            <span class="digit" id="min">00</span>
+            <span class="txt">Min</span>
+            <span class="digit" id="sec">00</span>
+            <span class="txt">Sec</span>
+            <span class="digit" id="count">00</span>
+        </div>
+        <div id="buttons">
+            <button class="btn" id="start">Start</button>
+            <button class="btn" id="stop">Stop</button>
+            <button class="btn" id="reset">Reset</button>
+            <button class="btn" id="lap">Lap</button>
+        </div>
+        <ul id="laps"></ul>
+    </div>
+    <footer>
+        Copyright &copy; aryanpurwar0@outlook.com | All rights reserved
+        <a href="https://www.linkedin.com/in/aryan-purwar-847539259/">
+            <img class="linkedin" src="LinkedIn_logo_initials.webp" alt="linkedIn">
+        </a>
+        <a href="https://github.com/aryanpurwar">
+            <img class="github" src="GitHub-Icon-White-Dark-Background-Logo.wine.svg" alt="Github">
+        </a>
+    </footer>
+
+    <script>
+        let hours = 0;
+        let minutes = 0;
+        let seconds = 0;
+        let tens = 0;
+        let lapSeconds = 0;
+        let lapTens = 0;
+        let lastLap = { tens: 0, seconds: 0 };
+        let interval = null;
+
+        const startButton = document.getElementById('start');
+        const stopButton = document.getElementById('stop');
+        const resetButton = document.getElementById('reset');
+        const lapButton = document.getElementById('lap');
+        const lapsList = document.getElementById('laps');
+        const timeDisplay = document.getElementById('time');
+
+        startButton.onclick = function() {
+            interval = setInterval(() => {
+                tens++;
+                if (tens >= 10) {
+                    seconds++;
+                    tens = 0;
+                }
+                if (seconds >= 60) {
+                    minutes++;
+                    seconds = 0;
+                }
+                if (minutes >= 60) {
+                    hours++;
+                    minutes = 0;
+                }
+                displayTime();
+            }, 100);
+        };
+
+        stopButton.onclick = function() {
+            clearInterval(interval);
+        };
+
+        resetButton.onclick = function() {
+            hours = 0;
+            minutes = 0;
+            seconds = 0;
+            tens = 0;
+            lapSeconds = 0;
+            lapTens = 0;
+            lastLap = { tens: 0, seconds: 0 };
+            lapsList.innerHTML = '';
+            displayTime();
+        };
+
+        lapButton.onclick = function() {
+            lapSeconds = seconds - lastLap.seconds;
+            lapTens = tens - lastLap.tens;
+            lastLap = {
+                tens: tens,
+                seconds: seconds
+            };
+            lapsList.innerHTML += "<li>" + leftPad(lapSeconds) + ":" + leftPad(lapTens) + "</li>";
+        };
+
+        function displayTime() {
+            document.getElementById('hr').innerHTML = leftPad(hours);
+            document.getElementById('min').innerHTML = leftPad(minutes);
+            document.getElementById('sec').innerHTML = leftPad(seconds);
+            document.getElementById('count').innerHTML = leftPad(tens);
+        }
+
+        function leftPad(value) {
+            return value < 10? ('0' + value) : value;
+        }
+    </script>
+</body>
+</html>
